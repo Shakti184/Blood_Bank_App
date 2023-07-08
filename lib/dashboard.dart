@@ -1,5 +1,7 @@
 import 'package:app/sliders_and_drawer/drawer.dart';
+import 'package:app/sliders_and_drawer/drawer_menu_pages/requests.dart';
 import 'package:flutter/material.dart';
+import 'finddoner.dart';
 import 'log_sign_in_out/otp_verify.dart';
 
 class HomePage extends StatefulWidget {
@@ -78,6 +80,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 40,),
                             ],
                           ),
                         ),
@@ -97,8 +100,11 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(" Doner Status ",style:TextStyle(fontSize: 18)),
-                              const SizedBox(height: 40,),
+                              const SizedBox(height: 30,),
                               Image.asset("assets/images/group3.png",width: 120,height: 120,),
+                              const SizedBox(height: 20,),
+                              const Text(" You can Donate! ",style:TextStyle(fontSize: 18,color: Colors.grey)),
+
                             ],
                           ),
                         ),
@@ -122,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: ((context) =>
-                                    const OtpVerification())));
+                                    const FindDonersPage())));
                       },
                       child: const Text(
                         "               Find Donors              ",
@@ -142,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: ((context) =>
-                                    const OtpVerification())));
+                                    const RequestPage())));
                       },
                       child: const Text("             Donate Blood             ",
                         style: TextStyle(color: Colors.white, fontSize: 20),

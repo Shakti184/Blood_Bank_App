@@ -130,31 +130,28 @@ class _DonatedState extends State<Donated> {
                               shrinkWrap: true,
                               itemCount: 18,
                               itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () => Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ChatDoner())),
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(bottom: BorderSide()),
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom: BorderSide()),
+                                  ),
+                                  child: const ListTile(
+                                    title: Text(
+                                      "Doner #123",
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    child: const ListTile(
-                                      title: Text(
-                                        "Doner #123",
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      subtitle: Text(
-                                        " View Details",
-                                        style: TextStyle(
-                                            fontSize: 15, color: Colors.grey),
-                                      ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.red,
-                                      ),
+                                    subtitle: Text(
+                                      " View Details",
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.grey),
+                                    ),
+                                    trailing:Column(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        Text("Receiver ID: #43EQ",style: TextStyle(fontSize: 15),),
+                                        Text("Qty: 0.6 ounce",style: TextStyle(fontSize: 15,color: Colors.grey),),
+                                      ],
                                     ),
                                   ),
                                 );

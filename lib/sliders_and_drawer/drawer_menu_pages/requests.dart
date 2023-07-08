@@ -46,14 +46,16 @@ class _RequestPageState extends State<RequestPage> {
                   border: Border(bottom: BorderSide(color: Colors.grey)),
                 ),
                 child:  ListTile(
+                  minVerticalPadding: 0,
                   title: const Text(
                     "Request #1234",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   subtitle: GestureDetector(
                     child: const Text(
-                      " View Details",
-                      style: TextStyle(fontSize: 15, color: Colors.red),
+                      "View Details",
+                      
+                      style: TextStyle(decoration: TextDecoration.underline,fontSize: 15, color: Colors.red),
                     ),
                     onTap:(){} ,
                   ),
