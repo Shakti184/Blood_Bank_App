@@ -1,14 +1,14 @@
-import 'package:app/dashboard.dart';
+import 'package:app/sliders_and_drawer/drawer_menu_pages/requests.dart';
 import 'package:flutter/material.dart';
 
-class SettingPage extends StatefulWidget {
-  const SettingPage({super.key});
+class DonersLocationPage extends StatefulWidget {
+  const DonersLocationPage({super.key});
 
   @override
-  State<SettingPage> createState() => _SettingPageState();
+  State<DonersLocationPage> createState() => _DonersLocationPageState();
 }
 
-class _SettingPageState extends State<SettingPage> {
+class _DonersLocationPageState extends State<DonersLocationPage> {
 
  
   @override
@@ -29,7 +29,7 @@ class _SettingPageState extends State<SettingPage> {
         title: const Padding(
           padding: EdgeInsets.only(left: 70),
           child: Text(
-            "Setting",
+            "Find Doner",
             style: TextStyle(
                 color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
           ),
@@ -40,13 +40,13 @@ class _SettingPageState extends State<SettingPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              const Text("Will be added soon",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.red),),
+              const Text("Donors in your location are :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               const SizedBox(
                 height: 300,width: 500,
-                child: Image(image: AssetImage("assets/images/pngwing.png",)),
+                child: Image(image: AssetImage("assets/images/map1.png",)),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -60,11 +60,11 @@ class _SettingPageState extends State<SettingPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => const HomePage())));
+                          builder: ((context) => const RequestPage())));
                 },
                 child:const Center(
                   child: Text(
-                    "Dashboard",
+                    "Communicate",
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),

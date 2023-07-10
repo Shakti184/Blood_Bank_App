@@ -1,4 +1,4 @@
-import 'package:app/sliders_and_drawer/drawer_menu_pages/requests.dart';
+import 'package:app/sliders_and_drawer/donerlocation.dart';
 import 'package:flutter/material.dart';
 
 class FindDonersPage extends StatefulWidget {
@@ -505,7 +505,7 @@ class _FindDonersPageState extends State<FindDonersPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const RequestPage())));
+                            builder: ((context) => const DonersLocationPage())));
                   },
                   child: const Text(
                     "             Send Requests             ",
