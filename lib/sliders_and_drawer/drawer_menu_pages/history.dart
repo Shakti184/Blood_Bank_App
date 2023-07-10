@@ -70,8 +70,8 @@ class _DonatedState extends State<Donated> {
               children: <Widget>[
                 GestureDetector(
                   child: Container(
-                    height: isDonated?40:30,
-                    width: isDonated?180:160,
+                    height: isDonated ? 40 : 30,
+                    width: isDonated ? 180 : 160,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
                         color: isDonated ? Colors.red : Colors.white,
@@ -81,7 +81,7 @@ class _DonatedState extends State<Donated> {
                         "Donated",
                         style: TextStyle(
                             color: isDonated ? Colors.white : Colors.black,
-                            fontSize: isDonated?25:20),
+                            fontSize: isDonated ? 25 : 20),
                       ),
                     ),
                   ),
@@ -92,8 +92,8 @@ class _DonatedState extends State<Donated> {
                 ),
                 GestureDetector(
                   child: Container(
-                    height: !isDonated?40:30,
-                    width: !isDonated?180:160,
+                    height: !isDonated ? 40 : 30,
+                    width: !isDonated ? 180 : 160,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
                         color: !isDonated ? Colors.red : Colors.white,
@@ -103,7 +103,7 @@ class _DonatedState extends State<Donated> {
                         "Received",
                         style: TextStyle(
                             color: !isDonated ? Colors.white : Colors.black,
-                            fontSize: !isDonated?25:20),
+                            fontSize: !isDonated ? 25 : 20),
                       ),
                     ),
                   ),
@@ -134,24 +134,53 @@ class _DonatedState extends State<Donated> {
                                   decoration: const BoxDecoration(
                                     border: Border(bottom: BorderSide()),
                                   ),
-                                  child: const ListTile(
-                                    title: Text(
-                                      "Doner #123",
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    subtitle: Text(
-                                      " View Details",
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.grey),
-                                    ),
-                                    trailing:Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Text("Receiver ID: #43EQ",style: TextStyle(fontSize: 15),),
-                                        Text("Qty: 0.6 ounce",style: TextStyle(fontSize: 15,color: Colors.grey),),
-                                      ],
+                                  child: const Card(
+                                    surfaceTintColor: Colors.white,
+                                    borderOnForeground: false,
+                                    elevation: 0,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Date : 11/08/23",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            " Location : 123, XYZ Apt",
+                                            style: TextStyle(
+                                                fontSize: 16, color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Receiver ID: #43EQ",
+                                            style: TextStyle(fontSize: 18),
+                                          ),
+                                          Text(
+                                            "Qty: 0.6 ounce",
+                                            style: TextStyle(
+                                                fontSize: 16, color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );
@@ -179,23 +208,68 @@ class _DonatedState extends State<Donated> {
                                     decoration: const BoxDecoration(
                                       border: Border(bottom: BorderSide()),
                                     ),
-                                    child: const ListTile(
-                                      title: Text(
-                                        "Doner #12345",
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      subtitle: Text(
-                                        " Hello I am available",
-                                        style: TextStyle(
-                                            fontSize: 15, color: Colors.grey),
-                                      ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.red,
-                                      ),
-                                    ),
+                                    child: const Card(
+                                      
+                                      surfaceTintColor: Colors.white,
+                                      borderOnForeground: false,
+                                      elevation: 0,
+                                        child: Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                                              children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Date : 11/08/23",
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              Text(
+                                                " Location : 123, XYZ Apt",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
+                                                                               
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Receiver ID: #43EQ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              Text(
+                                                "Qty: 0.6 ounce",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey),
+                                              ),
+                                              Text(
+                                                "View Details",
+                                                style: TextStyle(
+                                                    decoration:
+                                                        TextDecoration.underline,
+                                                        decorationColor: Colors.red,
+                                                    fontSize: 15,
+                                                    color: Colors.red),
+                                              ),
+                                            ],
+                                          ),
+                                                                              ],
+                                                                            ),
+                                        )),
                                   ),
                                 );
                               })
