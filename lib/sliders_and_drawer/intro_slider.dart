@@ -166,9 +166,9 @@ class Indicator extends AnimatedWidget {
   Widget _createIndicator(index) {
     double w = 10;
     double h = 10;
-    MaterialColor color = Colors.blueGrey;
+    Color color = Colors.white;
     if (controller.page == index) {
-      color = Colors.grey;
+      color = Colors.redAccent;
       h = 13;
       w = 13;
     }
@@ -181,7 +181,7 @@ class Indicator extends AnimatedWidget {
           color: color,
           width: w,
           height:h,
-          duration: const Duration(microseconds: 4000),
+          duration: const Duration(microseconds: 1),
         ),
       ),
     );

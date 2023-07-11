@@ -1,9 +1,6 @@
 
-
-
-import 'package:app/dashboard.dart';
-
-
+import 'package:app/sliders_and_drawer/drawer_menu_pages/chatdoner.dart';
+import 'package:app/sliders_and_drawer/splash.dart';
 import 'package:flutter/material.dart';
 
 
@@ -37,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const Splash(),
     );
   }
 }

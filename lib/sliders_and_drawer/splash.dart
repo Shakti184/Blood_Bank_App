@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(image),
-            const Text(" Blood Bank App ",style: TextStyle(fontSize: 25,color: Colors.red,),),
+            const Text(" Blood Bank App ",style: TextStyle(fontSize: 25,color: Colors.red,fontWeight: FontWeight.bold),),
           ],
         ),
       ),
