@@ -1,6 +1,6 @@
-import 'package:app/sliders_and_drawer/drawer_menu_pages/history.dart';
-import 'package:app/sliders_and_drawer/drawer_menu_pages/messages.dart';
-import 'package:app/sliders_and_drawer/drawer_menu_pages/settings.dart';
+import 'package:app/src/sliders_and_drawer/drawer_menu_pages/history.dart';
+import 'package:app/src/sliders_and_drawer/drawer_menu_pages/messages.dart';
+import 'package:app/src/sliders_and_drawer/drawer_menu_pages/settings.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer_menu_pages/requests.dart';

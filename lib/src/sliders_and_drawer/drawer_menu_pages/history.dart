@@ -1,3 +1,4 @@
+import 'package:app/details.dart';
 import 'package:flutter/material.dart';
 
 import 'chatdoner.dart';
@@ -141,44 +142,48 @@ class _DonatedState extends State<Donated> {
                                     child: Padding(
                                       padding: EdgeInsets.all(10.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Date : 11/08/23",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Date : 11/08/23",
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Text(
+                                                " Location : 123, XYZ Apt",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
                                           ),
-                                          Text(
-                                            " Location : 123, XYZ Apt",
-                                            style: TextStyle(
-                                                fontSize: 16, color: Colors.grey),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Receiver ID: #43EQ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              Text(
+                                                "Qty: 0.6 ounce",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Receiver ID: #43EQ",
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                          Text(
-                                            "Qty: 0.6 ounce",
-                                            style: TextStyle(
-                                                fontSize: 16, color: Colors.grey),
-                                          ),
-                                        ],
-                                      ),
                                         ],
                                       ),
                                     ),
@@ -199,78 +204,83 @@ class _DonatedState extends State<Donated> {
                               shrinkWrap: true,
                               itemCount: 18,
                               itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () => Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ChatDoner())),
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(bottom: BorderSide()),
-                                    ),
-                                    child: const Card(
-                                      
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                    border: Border(bottom: BorderSide()),
+                                  ),
+                                  child: Card(
                                       surfaceTintColor: Colors.white,
                                       borderOnForeground: false,
                                       elevation: 0,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                                              children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Date : 11/08/23",
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                              Text(
-                                                " Location : 123, XYZ Apt",
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.grey),
-                                              ),
-                                            ],
-                                          ),
-                                                                               
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Receiver ID: #43EQ",
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                              Text(
-                                                "Qty: 0.6 ounce",
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.grey),
-                                              ),
-                                              Text(
-                                                "View Details",
-                                                style: TextStyle(
-                                                    decoration:
-                                                        TextDecoration.underline,
-                                                        decorationColor: Colors.red,
-                                                    fontSize: 15,
-                                                    color: Colors.red),
-                                              ),
-                                            ],
-                                          ),
-                                                                              ],
-                                                                            ),
-                                        )),
-                                  ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Date : 11/08/23",
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  " Location : 123, XYZ Apt",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                  "Receiver ID: #43EQ",
+                                                  style:
+                                                      TextStyle(fontSize: 18),
+                                                ),
+                                                const Text(
+                                                  "Qty: 0.6 ounce",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey),
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () => Navigator.of(
+                                                          context)
+                                                      .push(MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const ViewDetailsPage())),
+                                                  child: const Text(
+                                                    "View Details",
+                                                    style: TextStyle(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                        decorationColor:
+                                                            Colors.red,
+                                                        fontSize: 15,
+                                                        color: Colors.red),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      )),
                                 );
                               })
                         ],

@@ -1,4 +1,4 @@
-import 'package:app/sliders_and_drawer/donerlocation.dart';
+import 'package:app/src/sliders_and_drawer/donerlocation.dart';
 import 'package:flutter/material.dart';
 
 class FindDonersPage extends StatefulWidget {

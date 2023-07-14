@@ -1,4 +1,4 @@
-import 'package:app/log_sign_in_out/login.dart';
+import 'package:app/src/authentication/log_sign_in_out/login.dart';
 import 'package:flutter/material.dart';
 
 class IntroSlider extends StatefulWidget {

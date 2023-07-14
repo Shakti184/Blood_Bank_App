@@ -1,14 +1,19 @@
-import 'package:app/log_sign_in_out/sign_up.dart';
+import 'package:app/src/authentication/log_sign_in_out/login.dart';
+import 'package:app/src/authentication/log_sign_in_out/sign_up.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class OtpVerification extends StatefulWidget {
-  const OtpVerification({super.key});
+   const OtpVerification(String verificationId,{super.key});
 
   @override
   State<OtpVerification> createState() => _OtpVerificationState();
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
+  final FirebaseAuth auth = FirebaseAuth.instance; 
+   var code="";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +56,19 @@ class _OtpVerificationState extends State<OtpVerification> {
                         width: 0.8,
                         style: BorderStyle.solid),
                   ),
-                  child: const TextField(
-                    style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500
-                    ),
+
+                  child:  TextField(
+                    onChanged: (value){
+                      // print(value);
+                      code=value;
+                    },
+                    style: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500),
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: '__  __  __  __',
                       hintStyle: TextStyle(fontSize: 30, color: Colors.red),
                       border: InputBorder.none,
@@ -71,19 +80,28 @@ class _OtpVerificationState extends State<OtpVerification> {
                 height: 25,
                 width: double.infinity,
                 // color: Colors.blue,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text(
-                "Didn't receive an OTP? ",
-                style: TextStyle(fontSize: 20, color: Colors.black),
+                    "Didn't receive an OTP? ",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
-                  Text("Resend OTP",style: TextStyle(color: Colors.red,fontSize: 20,decoration: TextDecoration.underline,decorationColor: Colors.red),)
+                  Text(
+                    "Resend OTP",
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.red),
+                  )
                 ]),
               ),
               const SizedBox(
                 height: 40,
               ),
+              // Pinput(
+              //   length:6,showCursor:true,onChange:(value){code=value;}
+              // ),
               SizedBox(
                 height: 73,
                 width: 270,
@@ -98,11 +116,18 @@ class _OtpVerificationState extends State<OtpVerification> {
                       padding: const EdgeInsets.all(
                           20) //content padding inside button
                       ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const SignUpPage())));
+                  onPressed: () async {
+                    //  print(code);
+                    //  print(LogInPage.verify);
+                    try{
+                      PhoneAuthCredential credential =PhoneAuthProvider.credential(verificationId: LogInPage.verify, smsCode: code);
+                      await auth.signInWithCredential(credential);
+                      if(context.mounted){
+                      Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context)=> const SignUpPage()),(route) => false);
+                      }
+                    }catch(e){
+                      print(e);
+                    }
                   },
                   child: const Text(
                     "Verify",

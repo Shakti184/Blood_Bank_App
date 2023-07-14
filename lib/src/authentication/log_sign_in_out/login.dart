@@ -1,15 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:app/log_sign_in_out/otp_verify.dart';
+import 'package:app/src/authentication/log_sign_in_out/otp_verify.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
-
+  static String verify="";
+  static String mobileNum="";
   @override
   State<LogInPage> createState() => _LogInPageState();
 }
 
 class _LogInPageState extends State<LogInPage> {
+  var phone="";
+  TextEditingController countryCode=TextEditingController();
+  TextEditingController mobileNumber=TextEditingController(); 
+
+  @override
+  void initState() {
+    countryCode.text="+91";
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,15 +55,15 @@ class _LogInPageState extends State<LogInPage> {
                           width: 0.8,
                           style: BorderStyle.solid),
                     ),
-                    child: const TextField(
+                    child: TextField(
+                      controller: mobileNumber,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.red,
                           fontSize: 28,
-                          fontWeight: FontWeight.w500
-                          ),
-                          decoration: InputDecoration(
+                          fontWeight: FontWeight.w500),
+                      decoration: const InputDecoration(
                           hintText: "+91",
                           hintStyle: TextStyle(color: Colors.red, fontSize: 30),
                           border: InputBorder.none),
@@ -79,11 +89,25 @@ class _LogInPageState extends State<LogInPage> {
                     padding:
                         const EdgeInsets.all(20) //content padding inside button
                     ),
-                onPressed: () {
-                  Navigator.push(
+                    
+                onPressed: () async {
+                  LogInPage.mobileNum=mobileNumber.text;
+                  await FirebaseAuth.instance.verifyPhoneNumber(
+                    phoneNumber: (countryCode.text+mobileNumber.text).toString(),
+                    
+                    verificationCompleted: (PhoneAuthCredential credential) {},
+                    verificationFailed: (FirebaseAuthException e) {},
+                    codeSent: (String verificationId, int? resendToken) {
+                      LogInPage.verify=verificationId;
+                      Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: ((context) => const OtpVerification())));
+                          builder: ((context) =>OtpVerification(verificationId))));
+                    },
+                    codeAutoRetrievalTimeout: (String verificationId) {},
+                    
+                  );
+                  
                 },
                 child: const Text(
                   "Get OTP",
