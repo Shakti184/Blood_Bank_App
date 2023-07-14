@@ -1,5 +1,3 @@
-
-import 'package:app/sliders_and_drawer/drawer_menu_pages/chatdoner.dart';
 import 'package:app/sliders_and_drawer/splash.dart';
 import 'package:flutter/material.dart';
 
