@@ -1,3 +1,4 @@
+import 'package:app/src/authentication/log_sign_in_out/sign_up.dart';
 import 'package:app/src/sliders_and_drawer/drawer_menu_pages/history.dart';
 import 'package:app/src/sliders_and_drawer/drawer_menu_pages/messages.dart';
 import 'package:app/src/sliders_and_drawer/drawer_menu_pages/settings.dart';
@@ -33,9 +34,9 @@ class _DrawerSliderState extends State<DrawerSlider> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(width: 86, height: 82, child: Image.asset(image)),
-                  const Text(
-                    "Donor #32457",
-                    style: TextStyle(
+                  Text(
+                    SignUpPage.username,
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),

@@ -1,5 +1,9 @@
 import 'package:app/src/sliders_and_drawer/donerlocation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class FindDonersPage extends StatefulWidget {
   const FindDonersPage({super.key});
@@ -9,10 +13,44 @@ class FindDonersPage extends StatefulWidget {
 }
 
 class _FindDonersPageState extends State<FindDonersPage> {
-  String dropdownValue = "18";
+  String age = "18";
   bool isfemale=true;
   var relation=[true,false,false];
   var bldTyp=[true,false,false,false,false,false,false,false,false];
+  var blood=["A+","A-","B+","B-","AB+","AB-","A-","O+","O-"];
+
+  Future sendRequest()async{
+     String gender=isfemale?"Female":"Male";
+     int typ=0;
+      for(int i=0;i<9;i++){
+        if(bldTyp[i]==true)typ=i;
+      }
+     String bloodTpye=blood[typ];
+     for(int i=0;i<3;i++){
+        if(relation[i]==true)typ=i;
+      }
+      String relationType = typ==0?"Family":typ==1?"Friend":"Other";
+      await   FirebaseFirestore.instance.collection('Requests').add({
+        'Patient Age':age,
+        'Patient Gender':gender,
+        'Patient Blood Type':bloodTpye,
+        'Patient Relation':relationType, 
+      }).whenComplete(
+      () => Get.snackbar("Success", "Your account has been created.",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor:Colors.green.withOpacity(0.1),
+      colorText:Colors.green),
+     )
+     .catchError((error,stackTrace){
+      Get.snackbar("Error", "Something went wrong. Try again",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.redAccent.withOpacity(0.1),
+      colorText: Colors.red,
+      );
+      // print(error.toString());
+     });
+     
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -429,7 +467,7 @@ class _FindDonersPageState extends State<FindDonersPage> {
                         color: relation[2]?Colors.red:Colors.white,
                           border: Border.all(color: Colors.red),
                           borderRadius: BorderRadius.circular(15)),
-                          child:  Center(child: Text("other",style: TextStyle(fontSize: 20,color:relation[2]?Colors.white: Colors.black,fontWeight: FontWeight.bold),)),
+                          child:  Center(child: Text("Other",style: TextStyle(fontSize: 20,color:relation[2]?Colors.white: Colors.black,fontWeight: FontWeight.bold),)),
                     ),
                   ),
                 ],
@@ -462,7 +500,7 @@ class _FindDonersPageState extends State<FindDonersPage> {
                         iconEnabledColor: Colors.red,
                         borderRadius: BorderRadius.circular(15),
                        
-                        value: dropdownValue,
+                        value: age,
                         // Step 4.
                         items: <String>["18", "19", "20", "21","22","23","24","25"]
                             .map<DropdownMenuItem<String>>((String value) {
@@ -477,7 +515,7 @@ class _FindDonersPageState extends State<FindDonersPage> {
                         // Step 5.
                         onChanged: (String? newValue) {
                           setState(() {
-                            dropdownValue = newValue!;
+                            age = newValue!;
                           });
                         },
                       ),
@@ -502,6 +540,7 @@ class _FindDonersPageState extends State<FindDonersPage> {
                           borderRadius: BorderRadius.circular(10)),
                       padding: const EdgeInsets.all(20)),
                   onPressed: () {
+                    sendRequest();
                     Navigator.push(
                         context,
                         MaterialPageRoute(

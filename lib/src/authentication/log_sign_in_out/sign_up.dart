@@ -1,6 +1,5 @@
 import 'package:app/dashboard.dart';
 import 'package:app/src/authentication/log_sign_in_out/login.dart';
-import 'package:app/src/authentication/log_sign_in_out/otp_verify.dart';
 import 'package:app/src/authentication/models/user_model.dart';
 import 'package:app/src/authentication/models/user_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,9 +8,11 @@ import 'package:get/get.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+  static String username="";
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
+
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -28,15 +29,16 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Future signUp()async{
+    SignUpPage.username=fullName.text.toString();
     storeUserDetails(
       fullName.text.trim(), 
       bloodGroup.text.trim(),
-      int.parse(donerAge.text.trim()),
+      donerAge.text.trim(),
     );
 
   }
 
-  Future storeUserDetails(String fullName,String bloodGroup,int age)async{
+  Future storeUserDetails(String fullName,String bloodGroup,String age)async{
     await FirebaseFirestore.instance.collection('Users').add({
       'fullName': fullName,
       'bloodGroup': bloodGroup,
@@ -87,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         style: const TextStyle(color: Colors.white,fontSize: 22),
                         textAlign: TextAlign.start,
                         decoration: const InputDecoration(
-                          hintText: 'Shati Maddeshiya',
+                          hintText: 'Your Name',
                           hintStyle: TextStyle(fontSize: 26,color: Colors.white,fontWeight: FontWeight.w300),
                         ),
                       ),
@@ -112,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         style: const TextStyle(color: Colors.white,fontSize: 22),
                         textAlign: TextAlign.start,
                         decoration: const InputDecoration(
-                          hintText: '23',
+                          hintText: '__',
                           hintStyle: TextStyle(fontSize: 26,color: Colors.white,fontWeight: FontWeight.w300),
                         ),
                       ),

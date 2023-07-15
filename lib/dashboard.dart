@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         Card(
-                          elevation: 13,
+                          elevation: 8,
                           shadowColor: Colors.red,
                           surfaceTintColor: Colors.white,
                           child: Padding(
@@ -131,16 +131,9 @@ class _HomePageState extends State<HomePage> {
                           child: SizedBox(width: 20),
                         ),
                         Card(
-                          elevation: 13,
+                          elevation: 8,
                           shadowColor: Colors.red,
                           surfaceTintColor: Colors.white,
-                          // height: 268,
-                          // width: 159,
-                          // decoration: const BoxDecoration(
-                          //     color: Colors.white,
-                          //     borderRadius:
-                          //         BorderRadius.all(Radius.circular(20))
-                          // ),
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Column(
