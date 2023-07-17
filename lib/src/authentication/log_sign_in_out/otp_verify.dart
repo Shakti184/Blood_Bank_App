@@ -2,17 +2,24 @@ import 'package:app/src/authentication/log_sign_in_out/login.dart';
 import 'package:app/src/authentication/log_sign_in_out/sign_up.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerification extends StatefulWidget {
-   const OtpVerification(String verificationId,{super.key});
+  const OtpVerification(String verificationId, {super.key});
+  // const OtpVerification(String verificationId, {super.key});
 
   @override
   State<OtpVerification> createState() => _OtpVerificationState();
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
-  final FirebaseAuth auth = FirebaseAuth.instance; 
-   var code="";
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  var code = "";
+  bool isLoding = false;
+  TextEditingController textEditingController = TextEditingController();
+  String currentText = "";
+  
+  var mobileNum = LogInPage.mobileNum;
 
   @override
   Widget build(BuildContext context) {
@@ -34,104 +41,112 @@ class _OtpVerificationState extends State<OtpVerification> {
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 )),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20,
                 width: double.infinity,
                 // color: Colors.blue,
                 child: Center(
                     child: Text(
-                  "Enter the OTP sent to +91 9530302222",
-                  style: TextStyle(fontSize: 17, color: Colors.grey),
+                  "Enter the OTP sent to +91 $mobileNum",
+                  style: const TextStyle(fontSize: 17, color: Colors.grey),
                 )),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 25, right: 25),
-                child: Container(
-                  height: 70,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                        color: Colors.black,
-                        width: 0.8,
-                        style: BorderStyle.solid),
+                child: PinCodeTextField(
+                  keyboardType: TextInputType.phone,
+                  pastedTextStyle: const TextStyle(color: Colors.red),
+                  length: 6,
+                  cursorColor: Colors.red,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  pinTheme: PinTheme(
+                    activeColor: Colors.red,
+                    selectedFillColor: Colors.white,
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(5),
+                    fieldHeight: 50,
+                    fieldWidth: 40,
+                    activeFillColor: Colors.white,
                   ),
-
-                  child:  TextField(
-                    onChanged: (value){
-                      // print(value);
-                      code=value;
-                    },
-                    style: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w500),
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
-                      hintText: '__  __  __  __',
-                      hintStyle: TextStyle(fontSize: 30, color: Colors.red),
-                      border: InputBorder.none,
-                    ),
-                  ),
+                  animationDuration: const Duration(milliseconds: 300),
+                  enableActiveFill: true,
+                  controller: textEditingController,
+                  onCompleted: (v) {
+                    debugPrint("Completed");
+                  },
+                  onChanged: (value) {
+                    debugPrint(value);
+                    setState(() {
+                      currentText = value;
+                    });
+                  },
+                  beforeTextPaste: (text) {
+                    return true;
+                  },
+                  appContext: context,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 25,
                 width: double.infinity,
                 // color: Colors.blue,
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(
+                  const Text(
                     "Didn't receive an OTP? ",
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
-                  Text(
-                    "Resend OTP",
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 20,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.red),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const LogInPage())));
+                    },
+                    child: const Text(
+                      "Resend OTP",
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 20,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.red),
+                    ),
                   )
                 ]),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              // Pinput(
-              //   length:6,showCursor:true,onChange:(value){code=value;}
-              // ),
-              SizedBox(
-                height: 73,
-                width: 270,
+              Padding(
+                padding: const EdgeInsets.all(40),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                      shadowColor: const Color.fromARGB(255, 239, 122, 122),
                       backgroundColor:
                           Colors.redAccent, //background color of button
-                      elevation: 2, //elevation of button
-                      shape: RoundedRectangleBorder(
-                          //to set border radius to button
-                          borderRadius: BorderRadius.circular(10)),
-                      padding: const EdgeInsets.all(
-                          20) //content padding inside button
-                      ),
+                      elevation: 8, //elevation of button
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      padding: const EdgeInsets.all(20)),
                   onPressed: () async {
-                    //  print(code);
-                    //  print(LogInPage.verify);
-                    try{
-                      PhoneAuthCredential credential =PhoneAuthProvider.credential(verificationId: LogInPage.verify, smsCode: code);
+                    try {
+                      PhoneAuthCredential credential =
+                          PhoneAuthProvider.credential(
+                              verificationId: LogInPage.verify, smsCode: textEditingController.text);
                       await auth.signInWithCredential(credential);
-                      if(context.mounted){
-                      Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context)=> const SignUpPage()),(route) => false);
+                      if (context.mounted) {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute( 
+                                builder: (context) => const SignUpPage()),
+                            (route) => false);
                       }
-                    }catch(e){
-                      print(e);
+                    } catch (e) {
+                      showSnackbar(context, Colors.red);
                     }
                   },
-                  child: const Text(
-                    "Verify",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+                  child: const Center(
+                    child: Text(
+                      "Verify",
+                      style: TextStyle(color: Colors.white, fontSize: 30),
+                    ),
                   ),
                 ),
               ),
@@ -141,4 +156,22 @@ class _OtpVerificationState extends State<OtpVerification> {
       ),
     );
   }
+}
+
+void showSnackbar(context, color) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: const Text(
+        "Enter the Valid OTP",
+        style: TextStyle(fontSize: 14),
+      ),
+      backgroundColor: color,
+      duration: const Duration(seconds: 2),
+      action: SnackBarAction(
+        label: "OK",
+        onPressed: () {},
+        textColor: Colors.white,
+      ),
+    ),
+  );
 }

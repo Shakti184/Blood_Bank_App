@@ -1,7 +1,7 @@
-import 'package:app/src/authentication/log_sign_in_out/sign_up.dart';
 import 'package:app/src/sliders_and_drawer/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'firebase_options.dart';
 
@@ -11,8 +11,12 @@ import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
 
   runApp(const MyApp());
 }
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const SignUpPage(),
+      home: const Splash(),
     );
   }
 }

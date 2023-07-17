@@ -132,15 +132,16 @@ class _DonatedState extends State<Donated> {
                               itemCount: 18,
                               itemBuilder: (context, index) {
                                 return Container(
+                                  height: 90,
                                   decoration: const BoxDecoration(
                                     border: Border(bottom: BorderSide()),
                                   ),
-                                  child: const Card(
+                                  child: Card(
                                     surfaceTintColor: Colors.white,
                                     borderOnForeground: false,
                                     elevation: 0,
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -152,15 +153,15 @@ class _DonatedState extends State<Donated> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Date : 11/08/23",
-                                                style: TextStyle(
+                                                "Date : ${index+1}/08/23",
+                                                style: const TextStyle(
                                                     fontSize: 18,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
                                               Text(
-                                                " Location : 123, XYZ Apt",
-                                                style: TextStyle(
+                                                " Location :${index+123}, XYZ Apt",
+                                                style: const TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.grey),
                                               ),
@@ -173,10 +174,10 @@ class _DonatedState extends State<Donated> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Receiver ID: #43EQ",
-                                                style: TextStyle(fontSize: 18),
+                                                "Receiver ID: #${index+23}EQ",
+                                                style: const TextStyle(fontSize: 18),
                                               ),
-                                              Text(
+                                              const Text(
                                                 "Qty: 0.6 ounce",
                                                 style: TextStyle(
                                                     fontSize: 16,
@@ -220,22 +221,22 @@ class _DonatedState extends State<Donated> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            const Column(
+                                             Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Date : 11/08/23",
-                                                  style: TextStyle(
+                                                  "Date : ${index+1}/08/23",
+                                                  style: const TextStyle(
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
                                                 Text(
-                                                  " Location : 123, XYZ Apt",
-                                                  style: TextStyle(
+                                                  " Location : 12${index+1}, XYXZ Apt",
+                                                  style: const TextStyle(
                                                       fontSize: 16,
                                                       color: Colors.grey),
                                                 ),
@@ -247,10 +248,10 @@ class _DonatedState extends State<Donated> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
-                                                const Text(
-                                                  "Receiver ID: #43EQ",
+                                              Text(
+                                                  "Receiver ID: #4${10+index}EQ",
                                                   style:
-                                                      TextStyle(fontSize: 18),
+                                                      const TextStyle(fontSize: 18),
                                                 ),
                                                 const Text(
                                                   "Qty: 0.6 ounce",

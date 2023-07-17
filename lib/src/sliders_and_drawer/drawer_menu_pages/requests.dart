@@ -58,9 +58,9 @@ class _RequestPageState extends State<RequestPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Request #1234",
-                            style: TextStyle(
+                          Text(
+                            "Request #${index+1000}",
+                            style: const TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.bold),
                           ),
                           GestureDetector(
