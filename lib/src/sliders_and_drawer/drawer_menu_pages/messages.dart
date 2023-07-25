@@ -36,24 +36,25 @@ class _MessagePageState extends State<MessagePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
-          itemCount: 4,
+          itemCount: 20,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ChatDoner())),
               child: Container(
+                height: 85,
                 decoration: const BoxDecoration(
                   border: Border(bottom: BorderSide()),
                 ),
-                child: const ListTile(
+                child: ListTile(
                   title: Text(
-                    "Doner #12345",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    "Doner #${index+1000}",
+                    style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
+                  subtitle: const Text(
                     " Hello I am available",
                     style: TextStyle(fontSize: 15, color: Colors.grey),
                   ),
-                  trailing: Icon(
+                  trailing: const Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.red,
                   ),
@@ -68,3 +69,10 @@ class _MessagePageState extends State<MessagePage> {
     );
   }
 }
+
+
+// web       1:289482632814:web:3ff86a2ae0c4383a76c07f
+// android   1:289482632814:android:085333459c1e037576c07f      
+// ios       1:289482632814:ios:2a365569d646f06176c07f
+// macos     1:289482632814:ios:1fbb8b6e608619e976c07f
+
