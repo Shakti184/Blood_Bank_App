@@ -196,7 +196,7 @@ class _DrawerSliderState extends State<DrawerSlider> {
           content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('We will be redirected to login page.',style: TextStyle(color: Colors.white,),),
+                Text('You will be redirected to login page.',style: TextStyle(color: Colors.white,),),
               ],
             ),
           ),
@@ -210,12 +210,11 @@ class _DrawerSliderState extends State<DrawerSlider> {
             ElevatedButton(
               child: const Text('Yes'),
               onPressed: () {
-                _signOut();
-                Navigator.pushReplacement(
+                _signOut(context); 
+                Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) =>
-                            const LogInPage()))); // Navigate to login
+                        builder: ((context) => const LogInPage())),(route)=>false);// Navigate to login
               },
             ),
           ],
@@ -224,17 +223,11 @@ class _DrawerSliderState extends State<DrawerSlider> {
     );
   }
 
-  Future<void> _signOut() async {
+  Future<void> _signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
+
   }
 }
-
-
-
-// decoration: BoxDecoration(
-//                 border: Border.all(color: Colors.red),
-//                 borderRadius: const BorderRadius.all(Radius.circular(10)),
-//               ),
 
 
 

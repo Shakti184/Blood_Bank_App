@@ -106,9 +106,9 @@ class _HomePageState extends State<HomePage> {
                                   height: 62,
                                   width: 140,
                                   child: Center(
-                                    child: Text(" Your Blood Group",
+                                    child: Text("Your Blood Group",
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w500)),
                                   ),
                                 ),
@@ -315,7 +315,7 @@ class _HomePageState extends State<HomePage> {
             child: ListBody(
               children: <Widget>[
                 Text(
-                  'You can not donate',
+                  'Age less than 18, You can not donate',
                   style: TextStyle(
                     color: Colors.white,
                   ),

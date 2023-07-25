@@ -132,11 +132,11 @@ class _OtpVerificationState extends State<OtpVerification> {
                               verificationId: LogInPage.verify, smsCode: textEditingController.text);
                       await auth.signInWithCredential(credential);
                       if (context.mounted) {
-                        Navigator.pushAndRemoveUntil(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute( 
                                 builder: (context) => const SignUpPage()),
-                            (route) => false);
+                            );
                       }
                     } catch (e) {
                       showSnackbar(context, Colors.red);

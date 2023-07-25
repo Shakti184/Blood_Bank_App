@@ -8,7 +8,7 @@ class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
   static String username = "";
   static String bloodtype = "A+";
-  static bool isadult=false;
+  static bool isadult = false;
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -40,15 +40,13 @@ class _SignUpPageState extends State<SignUpPage> {
       if (bldTyp[i] == true) typ = i;
     }
     SignUpPage.bloodtype = blood[typ];
-    var aged=int.tryParse(donerAge.text);
-    SignUpPage.isadult= aged!>=18?true:false;
-    storeUserDetails(
-      fullName.text.trim(),
-      SignUpPage.bloodtype,
-      donerAge.text.trim(),
-      dob.text.trim(),
-      prevalingHealthCond.text.trim(),
-    );
+    var aged = int.tryParse(donerAge.text);
+    if (SignUpPage.username.isEmpty || aged == null) {
+      showSnackbar(context, Colors.white);
+    } else {
+      SignUpPage.isadult = aged >= 18 ? true : false;
+      registorUser();
+    }
   }
 
   Future storeUserDetails(String fullName, String bloodGroup, String age,
@@ -531,7 +529,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               20) //content padding inside button
                           ),
                       onPressed: () {
-                        registorUser();
+                        signUp();
                       },
                       child: const Text(
                         "Registor for CheckUp",
@@ -582,11 +580,17 @@ class _SignUpPageState extends State<SignUpPage> {
             ElevatedButton(
               child: const Text('Yes'),
               onPressed: () {
-                signUp();
-                Navigator.pushReplacement(
+                storeUserDetails(
+                  fullName.text.trim(),
+                  SignUpPage.bloodtype,
+                  donerAge.text.trim(),
+                  dob.text.trim(),
+                  prevalingHealthCond.text.trim(),
+                );
+                Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => const HomePage())));
+                        builder: ((context) => const HomePage())),(route)=>false);
               },
             ),
           ],
@@ -594,4 +598,22 @@ class _SignUpPageState extends State<SignUpPage> {
       },
     );
   }
+}
+
+void showSnackbar(context, color) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: const Text(
+        "Enter Correct Name and Age",
+        style: TextStyle(fontSize: 14,color: Colors.red),
+      ),
+      backgroundColor: color,
+      duration: const Duration(seconds: 3),
+      action: SnackBarAction(
+        label: "OK",
+        onPressed: () {},
+        textColor: Colors.red,
+      ),
+    ),
+  );
 }

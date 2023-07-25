@@ -1,8 +1,6 @@
 import 'package:app/details.dart';
 import 'package:flutter/material.dart';
 
-import 'chatdoner.dart';
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
 
